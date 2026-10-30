@@ -1,6 +1,6 @@
 # Agent Guidelines for AI, Machine Learning & Data Science Journey in Julia
 
-This document governs the behavior, operational protocols, and constraint validations for any AI agent or automated assistant operating within this repository.
+This document governs the behavior, operational protocols, and constraint validations for any AI agent or automated assistant operating within this repository. Agents must read `CONTRIBUTING.md` to understand repository guidelines and contribution workflows.
 
 ---
 
