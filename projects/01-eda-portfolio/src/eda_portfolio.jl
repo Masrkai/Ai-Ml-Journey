@@ -15,8 +15,9 @@ println("==================================================")
 println(" Starting Chronological EDA Portfolio Pipeline")
 println("==================================================")
 
-# Initialize global summary report container
+# Initialize global summary report container and output directory
 summary_lines = String[]
+const output_dir = joinpath(dirname(@__DIR__), "output")
 
 # Execute chronological pipeline stages
 include("pipeline/01_ingest.jl")
