@@ -29,3 +29,4 @@ Whenever an update, refactor, or documentation change is made anywhere in the re
 3. Store and load all datasets exclusively from the main root `datasets/` folder (e.g., `datasets/iris.csv`).
 4. Validate code execution and outputs.
 5. Ensure governance rules and semantic ambiguity checks are strictly followed.
+6. **Performance & Multi-Threading**: Utilizing Julia's native multi-threading capabilities (`Threads.@threads`) for CPU-bound data transformations and pipeline operations is very welcome and advised, provided thread-safety and race-condition prevention are maintained.

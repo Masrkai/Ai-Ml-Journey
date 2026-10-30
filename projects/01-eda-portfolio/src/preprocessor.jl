@@ -17,7 +17,8 @@ Applies Yeo-Johnson power transformation to stabilize variance and reduce skewne
 function yeo_johnson_transform!(df::DataFrame, col::Symbol, lambda::Float64 = 1.0)
     vals = df[!, col]
     transformed = similar(vals, Float64)
-    for (i, x) in enumerate(vals)
+    Threads.@threads for i in eachindex(vals)
+        x = vals[i]
         if x >= 0
             if abs(lambda) > 1e-12
                 transformed[i] = ((x + 1)^lambda - 1) / lambda
@@ -59,7 +60,7 @@ end
 Applies Z-score standardization (mean = 0, std = 1) to specified numeric columns.
 """
 function standardize_dataframe!(df::DataFrame, numeric_cols::Vector{Symbol})
-    for col in numeric_cols
+    Threads.@threads for col in numeric_cols
         vals = df[!, col]
         m = mean(vals)
         s = std(vals)
