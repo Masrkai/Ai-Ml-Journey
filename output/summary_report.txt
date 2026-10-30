@@ -1,10 +1,73 @@
 EDA Portfolio Summary Report
-============================
- - sepal_length: mean = 5.843, std = 0.828, median = 5.8
- - sepal_width: mean = 3.057, std = 0.436, median = 3.0
- - petal_length: mean = 3.758, std = 1.765, median = 4.35
- - petal_width: mean = 1.199, std = 0.762, median = 1.3
- - sepal_length Outliers: 0
- - sepal_width Outliers: 4
- - petal_length Outliers: 0
- - petal_width Outliers: 0
+=====================================
+Dataset Dimensions: 150 rows x 5 columns
+
+[Data Quality Audit]
+ - Column 'sepal_length' (Float64): missing = 0 (0.0%), unique_values = 35
+ - Column 'sepal_width' (Float64): missing = 0 (0.0%), unique_values = 23
+ - Column 'petal_length' (Float64): missing = 0 (0.0%), unique_values = 43
+ - Column 'petal_width' (Float64): missing = 0 (0.0%), unique_values = 22
+ - Column 'species' (DataStrings.DataString): missing = 0 (0.0%), unique_values = 3
+ - Exact duplicate rows detected: 1
+
+[Class Imbalance & Entropy Diagnostics]
+ - Species 'setosa': count = 50 (33.33%)
+ - Species 'versicolor': count = 50 (33.33%)
+ - Species 'virginica': count = 50 (33.33%)
+ - Shannon Entropy of Target Distribution: 1.585 bits
+
+[Summary Statistics & Correlations]
+ - sepal_length: mean = 5.843, std = 0.828, median = 5.8, IQR = 1.3
+ - sepal_width: mean = 3.057, std = 0.436, median = 3.0, IQR = 0.5
+ - petal_length: mean = 3.758, std = 1.765, median = 4.35, IQR = 3.5
+ - petal_width: mean = 1.199, std = 0.762, median = 1.3, IQR = 1.5
+
+[Correlation Matrix (Pearson)]
+         Column   sepal_length    sepal_width   petal_length    petal_width
+   sepal_length            1.0         -0.118          0.872          0.818
+    sepal_width         -0.118            1.0         -0.428         -0.366
+   petal_length          0.872         -0.428            1.0          0.963
+    petal_width          0.818         -0.366          0.963            1.0
+   -> High multicollinearity alert between sepal_length and petal_length (0.872)
+   -> High multicollinearity alert between sepal_length and petal_width (0.818)
+   -> High multicollinearity alert between petal_length and petal_width (0.963)
+
+[Outlier Detection]
+ - sepal_length: 0 univariate outliers detected (Bounds: [3.15, 8.35])
+ - sepal_width: 4 univariate outliers detected (Bounds: [2.05, 4.05])
+ - petal_length: 0 univariate outliers detected (Bounds: [-3.65, 10.35])
+ - petal_width: 0 univariate outliers detected (Bounds: [-1.95, 4.05])
+ - Total unique samples flagged as univariate outliers: 4 out of 150
+
+[Groupby Aggregation by Species]
+ - Species 'setosa': mean sepal_l=5.01, sepal_w=3.43, petal_l=1.46, petal_w=0.25
+ - Species 'versicolor': mean sepal_l=5.94, sepal_w=2.77, petal_l=4.26, petal_w=1.33
+ - Species 'virginica': mean sepal_l=6.59, sepal_w=2.97, petal_l=5.55, petal_w=2.03
+
+[Distributional Moments (Skewness & Excess Kurtosis)]
+ - sepal_length: Skewness = 0.315, Excess Kurtosis = -0.552
+ - sepal_width: Skewness = 0.319, Excess Kurtosis = 0.228
+ - petal_length: Skewness = -0.275, Excess Kurtosis = -1.402
+ - petal_width: Skewness = -0.103, Excess Kurtosis = -1.341
+
+[Spearman Rank Correlation Matrix]
+         Column   sepal_length    sepal_width   petal_length    petal_width
+   sepal_length            1.0         -0.167          0.882          0.834
+    sepal_width         -0.167            1.0          -0.31         -0.289
+   petal_length          0.882          -0.31            1.0          0.938
+    petal_width          0.834         -0.289          0.938            1.0
+
+[Inferential Group Separability (One-Way ANOVA)]
+ - Feature 'sepal_length': One-Way ANOVA F-statistic = 119.26 (df: 2, 147)
+ - Feature 'sepal_width': One-Way ANOVA F-statistic = 49.16 (df: 2, 147)
+ - Feature 'petal_length': One-Way ANOVA F-statistic = 1180.16 (df: 2, 147)
+ - Feature 'petal_width': One-Way ANOVA F-statistic = 960.01 (df: 2, 147)
+
+[Multivariate Outlier Detection (Mahalanobis)]
+ - Mahalanobis distance multivariate outliers (p < 0.01 threshold = 13.277): 0 samples flagged
+
+[Principal Component Analysis (PCA)]
+ - Principal Component PC1: Explained Variance = 72.96% (Cumulative: 72.96%)
+ - Principal Component PC2: Explained Variance = 22.85% (Cumulative: 95.81%)
+ - Principal Component PC3: Explained Variance = 3.67% (Cumulative: 99.48%)
+ - Principal Component PC4: Explained Variance = 0.52% (Cumulative: 100.0%)
