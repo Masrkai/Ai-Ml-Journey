@@ -1,19 +1,22 @@
-EDA Portfolio Summary Report
-=====================================
+EDA Portfolio Summary Report (Dataset-Agnostic)
+=====================================================
+Source Path: datasets/iris.csv
 Dataset Dimensions: 150 rows x 5 columns
+Target Column: species
+Workflow Optimization Mode: SUPERVISED
 
 [Data Quality Audit]
  - Column 'sepal_length' (Float64): missing = 0 (0.0%), unique_values = 35
  - Column 'sepal_width' (Float64): missing = 0 (0.0%), unique_values = 23
  - Column 'petal_length' (Float64): missing = 0 (0.0%), unique_values = 43
  - Column 'petal_width' (Float64): missing = 0 (0.0%), unique_values = 22
- - Column 'species' (DataStrings.DataString): missing = 0 (0.0%), unique_values = 3
+ - Column 'species' (String15): missing = 0 (0.0%), unique_values = 3
  - Exact duplicate rows detected: 1
 
-[Class Imbalance & Entropy Diagnostics]
- - Species 'setosa': count = 50 (33.33%)
- - Species 'versicolor': count = 50 (33.33%)
- - Species 'virginica': count = 50 (33.33%)
+[Target Class Imbalance & Entropy Diagnostics]
+ - Class 'setosa': count = 50 (33.33%)
+ - Class 'versicolor': count = 50 (33.33%)
+ - Class 'virginica': count = 50 (33.33%)
  - Shannon Entropy of Target Distribution: 1.585 bits
 
 [Summary Statistics & Correlations]
@@ -32,6 +35,11 @@ Dataset Dimensions: 150 rows x 5 columns
    -> High multicollinearity alert between sepal_length and petal_width (0.818)
    -> High multicollinearity alert between petal_length and petal_width (0.963)
 
+[ML Workflow Optimization Diagnostics (SUPERVISED)]
+ - Supervised Classification Target Analysis:
+   -> Class Imbalance Ratio (Max/Min): 1.0
+   -> Class distribution is reasonably balanced (ratio <= 3.0).
+
 [Outlier Detection]
  - sepal_length: 0 univariate outliers detected (Bounds: [3.15, 8.35])
  - sepal_width: 4 univariate outliers detected (Bounds: [2.05, 4.05])
@@ -39,10 +47,10 @@ Dataset Dimensions: 150 rows x 5 columns
  - petal_width: 0 univariate outliers detected (Bounds: [-1.95, 4.05])
  - Total unique samples flagged as univariate outliers: 4 out of 150
 
-[Groupby Aggregation by Species]
- - Species 'setosa': mean sepal_l=5.01, sepal_w=3.43, petal_l=1.46, petal_w=0.25
- - Species 'versicolor': mean sepal_l=5.94, sepal_w=2.77, petal_l=4.26, petal_w=1.33
- - Species 'virginica': mean sepal_l=6.59, sepal_w=2.97, petal_l=5.55, petal_w=2.03
+[Groupby Aggregation by Target]
+ - Target Class 'setosa': sepal_length=5.01, sepal_width=3.43, petal_length=1.46, petal_width=0.25
+ - Target Class 'versicolor': sepal_length=5.94, sepal_width=2.77, petal_length=4.26, petal_width=1.33
+ - Target Class 'virginica': sepal_length=6.59, sepal_width=2.97, petal_length=5.55, petal_width=2.03
 
 [Distributional Moments (Skewness & Excess Kurtosis)]
  - sepal_length: Skewness = 0.315, Excess Kurtosis = -0.552
@@ -64,10 +72,17 @@ Dataset Dimensions: 150 rows x 5 columns
  - Feature 'petal_width': One-Way ANOVA F-statistic = 960.01 (df: 2, 147)
 
 [Multivariate Outlier Detection (Mahalanobis)]
- - Mahalanobis distance multivariate outliers (p < 0.01 threshold = 13.277): 0 samples flagged
+ - Mahalanobis distance multivariate outliers (p < 0.01 threshold ≈ 14.94): 0 samples flagged
+
+[Advanced Statistical Diagnostics]
+ - Feature 'sepal_length': Kruskal-Wallis H = 96.76, Levene Stat = 6.35
+ - Feature 'sepal_width': Kruskal-Wallis H = 63.03, Levene Stat = 0.59
+ - Feature 'petal_length': Kruskal-Wallis H = 130.13, Levene Stat = 19.48
+ - Feature 'petal_width': Kruskal-Wallis H = 129.91, Levene Stat = 19.89
 
 [Principal Component Analysis (PCA)]
  - Principal Component PC1: Explained Variance = 72.96% (Cumulative: 72.96%)
  - Principal Component PC2: Explained Variance = 22.85% (Cumulative: 95.81%)
  - Principal Component PC3: Explained Variance = 3.67% (Cumulative: 99.48%)
  - Principal Component PC4: Explained Variance = 0.52% (Cumulative: 100.0%)
+ - Mean Silhouette Separation Score in PC1-PC2 space: 0.401

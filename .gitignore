@@ -1,0 +1,18 @@
+# Datasets (do not redistribute raw dataset files in version control)
+datasets/
+**/datasets/
+
+# Output directories, generated reports, and visualization assets
+output/
+**/output/
+*.png
+*.txt
+
+# Julia build & environment artifacts
+*.jl.cov
+*.jl.*.cov
+*.mem
+*.dll
+*.dylib
+*.so
+*.exe

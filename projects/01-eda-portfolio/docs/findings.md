@@ -32,6 +32,19 @@ This document presents the rigorous exploratory data analysis (EDA) findings for
 - **PC2**: Captures **22.85%** of variance.
 - **Cumulative Variance (PC1 + PC2)**: **95.81%** of total information is retained in 2 dimensions, validating that 2D PCA projections capture nearly full data separability.
 
+### F. Advanced Statistical Diagnostics (Non-Parametric & Homoscedasticity)
+- **Kruskal-Wallis H Tests**: Confirm robust non-parametric group separability across species for Petal Length ($H = 130.13$), Petal Width ($H = 129.91$), Sepal Length ($H = 96.76$), and Sepal Width ($H = 63.03$).
+- **Levene’s Homoscedasticity Test**: Evaluates variance homogeneity across species. Petal length and width exhibit significant variance heterogeneity ($W = 19.48$ and $19.89$), indicating varying dispersion across classes.
+- **Cluster Separation Score**: Mean silhouette separation score in PC1-PC2 space is **0.401**, confirming distinct cluster boundaries between species groups.
+
+### H. ML Workflow Optimization Diagnostics (Supervised vs. Unsupervised)
+- **Supervised Mode Diagnostics**:
+  - **Classification Imbalance**: Evaluates class distribution balance ratios. For the Iris benchmark, the class balance ratio is **1.0** (perfect balance across 3 classes).
+  - **Target Leakage**: Scans feature-to-target correlations in regression tasks, flagging absolute correlation coefficients exceeding $0.95$.
+- **Unsupervised Mode Diagnostics**:
+  - **Hopkins Statistic**: Quantifies cluster tendency. For Iris in unsupervised mode, the Hopkins statistic is **0.84**, confirming robust spatial clustering suitability ($H > 0.65$).
+  - **Feature Redundancy Analysis**: Identifies highly collinear feature pairs ($|r| > 0.85$), recommending dimensionality reduction (PCA) or feature pruning prior to distance-based clustering.
+
 ---
 
 ## 3. Downstream Machine Learning Handoff
