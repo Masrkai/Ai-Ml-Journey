@@ -16,3 +16,6 @@ output/
 *.dylib
 *.so
 *.exe
+
+# Planning files
+.planning/
